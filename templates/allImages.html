@@ -1,0 +1,48 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><strong>{{title}}</strong></h3>
+	</div>
+	<div class="panel-body"  >
+		<div class="col-md-4" ng-repeat="image in images | orderBy:['RepoTags[0]']">
+			<div class="panel panel-default" >
+				<div class="panel-heading"><strong>{{image.RepoTags[0]}}</strong></div>
+				<div class="panel-body" >
+					<dl class="dl-horizontal">
+						 <dt>Author</dt>
+						 <dd style="max-width:300px;overflow:hidden; text-overflow:ellipsis;white-space: nowrap" alt="{{image.author}}">{{image.author}}</dd>
+						 <dt>Created</dt>
+						 <dd>{{image.created}}</dd>
+						 <dt>VirtualSize</dt>
+						 <dd>{{image.VirtualSize}}</dd>	
+						 
+						 <dt>Entrypoint</dt>
+						 <dd>{{image.container_config.Entrypoint}}</dd>
+						 <dt>Commands</dt>
+						 <dd><span ng-repeat="cmd in image.config.Cmd">{{cmd}},</span></dd>						  
+					</dl>
+				</div>
+				<div class="panel-footer">
+					<button type="button" class="btn btn-danger" data-toggle="modal" id="btnImageDelete" data-target="#modalDeleteImage">Delete</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="modalDeleteImage" tabindex="-1" role="dialog" aria-labelledby="deleteImageLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+		  <div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h4 class="modal-title" id="deleteImageLabel">Delete image</h4>
+		  </div>
+		  <div class="modal-body">	
+		 
+		  </div>
+		  <div class="modal-footer">
+			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			<button id="deleteContainerButton" data-loading-text="Deleting..." type="button" class="btn btn-danger" ng-click="">Delete</button>
+		  </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><strong>{{title}}</strong></h3>
+	</div>
+	<div class="panel-body" ng-hide="images.isError">
+		<div class="col-md-5">
+			<form role="form" id="formCreateContainer">
+				<div class="form-group">
+					<label for="containerNameInput">Hostname</label>
+					<input type="text"  class="form-control" id="containerNameInput" placeholder="hostname" required>
+				</div>
+				<div class="form-group">
+					<label for="containerImageInput">Image</label>
+					<select class="form-control" id="containerImageInput">
+						<option ng-repeat="image in images | orderBy:['RepoTags[0]']" value="{{image.RepoTags[0]}}">{{image.RepoTags[0]}} ({{image.VirtualSize}})</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="commandInput">Command/EntryPoint</label>
+					<input type="text"  class="form-control" id="commandInput" placeholder="command" data-toggle="tooltip" data-placement="top" value="/run.sh, https://github.com/Your/repo.git" title="only works with gitWebServer Image">
+				</div>
+				<div class="form-group">
+					<div class="checkbox">
+					    <label>
+					      <input id="backgroundCB" type="checkbox" checked="checked"> Run in the background
+					    </label>
+					  </div>
+				</div>
+				<button type="submit" class="submit" style="display:none;">
+			</form>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="btn-group">
+			<button type="button" class="btn btn-success" data-loading-text="Creating..." ng-click="createContainer($event)">Create</button>
+		</div>
+	</div>
+</div>

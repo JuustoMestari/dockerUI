@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="assets/ico/favicon.ico">
+
+    <title>Docker UI</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/dashboard.css" rel="stylesheet">
+	  <link href="css/dockerUI.css" rel="stylesheet">
+  </head>
+
+  <body ng-app="dockerUIv2">
+    
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+         <a class="navbar-brand" href="#"><button type="button" class="btn btn-danger btn-xs">! Alpha Version !</button></a> 
+        </div>
+        <div class="navbar-collapse collapse"> 
+          <ul class="nav navbar-nav navbar-right" ng-include="'templates/navbar.html'"></ul>
+        </div>
+      </div>
+    </div>
+   
+	<div class="container-fluid">
+		<div class="row" ui-view ></div>
+	</div>
+
+  <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
+   <script src="js/bootstrap.min.js"></script>
+  <script src="js/angular.min.js"></script>
+  <script src="js/angular-resource.min.js"></script>
+  <script src="js/angular-ui-router.js"></script>
+  <script src="js/dockerUIv2.js"></script>
+  <script src="js/services.js"></script>
+  <script src="controllers/dashboardCtrl.js"></script>
+  <script src="controllers/settingsCtrl.js"></script>
+  <script src="controllers/aboutCtrl.js"></script>
+  <script src="controllers/activeContainersCtrl.js"></script>
+  <script src="controllers/allContainersCtrl.js"></script>
+  <script src="controllers/newContainerCtrl.js"></script>
+  <script src="controllers/notificationCtrl.js"></script>
+  <script src="controllers/containerCtrl.js"></script>
+  <script src="controllers/searchImageCtrl.js"></script>
+  <script src="controllers/allImagesCtrl.js"></script>
+  <script src="http://www.datejs.com/build/date.js"></script>
+  </body>
+</html>

@@ -1,0 +1,79 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<h3 class="panel-title"><strong>{{title}}</strong></h3>
+	</div>
+	<div class="panel-body">
+		<div class="col-md-5">
+			<form role="form" id="formSearchImage">
+				<div class="form-group">
+					<label for="searchInput">Search for</label>
+					<input type="text"  class="form-control" id="searchInput" placeholder="search terms" ng-model="searchTerm" required>
+					<div class="form-group">
+						<label>
+					    	<input type="checkbox" ng-model="onlyOfficial"> Only official images
+						</label>
+						<label>
+					    	<input type="checkbox" ng-model="onlyTrusted"> Only trusted images
+						</label>
+					</div>
+				</div>
+				<button type="submit" class="submit" style="display:none;">
+			</form>
+		</div>
+	</div>
+	<div class="panel-footer">
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary" data-loading-text="Searching..." ng-click="searchImage($event,searchTerm)">Search</button>
+		</div>
+	</div>
+</div>
+<div id="searchImageNotification"></div>
+<div class="panel panel-default" ng-show="displayResults">
+	<div class="panel-heading">
+		<h3 class="panel-title"><strong>Results for {{searchString}}</strong></h3>
+	</div>
+	<div class="panel-body">
+		<div class="panel panel-default" ng-show="isDownloading">
+			<div class="panel-body">
+				<div class="col-md-7 col-md-offset-1">
+					<div class="progress progress-striped active">
+					  <div class="progress-bar" role="progressbar progress-bar-info" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width:{{downloadPercent}}">{{downloadPercent}}
+					  </div>
+					</div>
+				</div>
+				<div class="col-md-4"><b>{{getDownloadStatus}}</b></div>
+			</div>
+		</div>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Name</th>
+					<th class="hidden-sm hidden-xs">Description</th>
+					<th class="isGlyph hidden-sm hidden-xs">Official</th>
+					<th class="isGlyph hidden-sm hidden-xs">Trusted</th>
+					<th></th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			
+				<tr ng-repeat="image in imagesResults | filter:{is_official:onlyOfficial,is_trusted:onlyTrusted} | orderBy:['-star_count'] | slice:start:end">
+					<td>{{$index+start+1}}</td>
+					<td><a href="https://index.docker.io/u/{{image.name}}" target="_blank">{{image.name}}</a></td>
+					<td class="hidden-sm hidden-xs" style="max-width:500px;overflow:hidden; text-overflow:ellipsis;white-space: nowrap">{{image.description}}</td>	
+					<td class="isGlyph hidden-sm hidden-xs"><span class="glyphicon" ng-class="{'glyphicon-ok':image.is_official,'glyphicon-remove':!image.is_official}"></span></td>
+					<td class="isGlyph hidden-sm hidden-xs"><span class="glyphicon" ng-class="{'glyphicon-ok':image.is_trusted,'glyphicon-remove':!image.is_trusted}"></span></td>
+					<td class="isGlyph">{{image.star_count}} <span class="glyphicon glyphicon-star"></span></td>
+					<td class="col-md-1"><button type="button" class="btn btn-primary btn-xs" ng-disabled="isDownloading" ng-click="pullImage($event,image.name)" data-loading-text="Pulling...">Pull</button></td>
+				</tr>
+				
+			</tbody>
+		</table>
+	</div>
+	<div class="panel-footer">
+		<ul class="pagination">
+			<li class="page_{{$index+1}}" ng-repeat="i in paginationButtons track by $index" ng-class="{'active':$first}"><a href="" ng-click="goToPage($index+1)">{{$index+1}}</a></li>
+		</ul>
+	</div>
+</div>

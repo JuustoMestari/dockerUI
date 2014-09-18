@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+<div class="panel-heading">{{title}}</div>
+<table class="table table-striped">
+	<thead>
+		<tr>
+			<th>#</th>
+			<th class="hidden-sm hidden-xs">ID</th>
+			<th class="hidden-sm hidden-xs">Image</th>
+			<th>Name</th>
+			<th>IP</th>
+			<th class="hidden-sm hidden-xs">Exposed port(s)</th>
+			<th>Time</th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+			<tr ng-class="{'success':container.State.Running,'danger':!container.State.Running }" ng-repeat="container in containers | orderBy:'Config.Hostname'">
+				<td>{{$index+1}}</td>
+				<td class="hidden-sm hidden-xs" style="max-width:200px;overflow:hidden; text-overflow:ellipsis;">{{container.ID}}</td>
+				<td class="hidden-sm hidden-xs">{{container.Config.Image}}</td>
+				<td><strong>{{container.Config.Hostname}}</strong></td>
+				<td>{{container.NetworkSettings.IPAddress}}</td>
+				<td class="hidden-sm hidden-xs">
+					<div ng-repeat="(key,value) in container.HostConfig.PortBindings">
+						<a ng-href="http://178.62.149.64:{{value[0].HostPort}}" target="_blank">{{key}} <span class="glyphicon glyphicon-arrow-right"></span> {{value[0].HostPort}}</a>
+					</div>
+				</td>
+				<td>{{container.State.StartedAt}}</td>
+				<td><a ui-sref=".instance-container({containerID:container.ID})"><button type="button" class="btn btn-primary btn-xs">Manage</button></a></td>
+			</tr>
+	</tbody>
+</table>
+</div>

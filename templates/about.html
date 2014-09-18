@@ -1,0 +1,28 @@
+<div class="col-sm-9 col-sm-offset-2 col-md-10 col-md-offset-1 main">
+<h1>Help</h1>
+
+<h3>What is this website?</h3>
+<h5>This website is a WEB UI for docker. It is mainly built with angularjs, jquery and Docker's API.</h5>
+
+<h3>What is Docker?</h3>
+<h5>Docker is an open platform for developers and sysadmins to build, ship, and run distributed applications. Consisting of Docker Engine, a portable, lightweight runtime and packaging tool, and Docker Hub, a cloud service for sharing applications and automating workflows, Docker enables apps to be quickly assembled from components and eliminates the friction between development, QA, and production environments. As a result, IT can ship faster and run the same app, unchanged, on laptops, data center VMs, and any cloud. ( <a href="https://www.docker.com/whatisdocker/">Docker</a> )</h5>
+
+<h3>How can I test it?</h3>
+<h5>In the active containers list, you will see running containers. There should be one running. If not, you can click to the "All containers" on the left , select one and click on "Manage". From there, you can click "Start" and go back to the "Active containers" page.</h5>
+<h5>The interesting column is "Exposed Ports". It shows the container's local port and where it is redirected to, on the host. If you click the link, you will access the container's web Server.</h5>
+<h5>From there, you can see a simple page. The content of the page has actually been pulled out from my own gitHub repository (click the link on the page to check it out) . Everytime the container starts, it pulls the repo out.</h5>
+
+<h3>Can I try that myself?</h3>
+<h5>Sure , but you will need a repo containing some files (ideally, html or php).</h5>
+<h5>Click on "New" in the Containers section. Give your container a hostname, select gitWebServer as an Image and replace 'https://github.com/Your/repo.git' with your repo address. (leave '/run.sh ,')</h5>
+<h5>Click on "Create", you will be redirected to the container's page.</h5>
+<h5>In the Host IP field, type '0.0.0.0' , this means you want to listen on all the interfaces. In the Host Ports field, enter a port number (60090 for example).</h5>
+<h5>Click on Start and go back to the Active Containers page.</h5>
+<h5>Click on the link in the exposed ports columns corresponding to your container, if everything went well, you should see the files pulled from your repo !</h5>
+
+<h3>Why this website?</h3>
+<h5>The purpose of this website is to be able to create containers really quickly. You give it a name, select a pre-built image , give it a bunch of commands and you create it !
+Possibilities with docker are endless and you can create your custom images (Apache, PHP, Python, node.js, ...) with the tools you need. </h5>
+<h5>It can be useful for developers to test their app. No need for expensive VM's and hours of tools installation. Once your image is created with your tools and configured with your repo, you can test your work. If you update the repo, simply restart the container.</h5>
+
+<h3><a href="https://david.davenne.be">David Davenne</a></h3>
