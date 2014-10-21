@@ -9,7 +9,7 @@ With this version, you can :
 
 ### Configure
 
-* Run the command on line 3 on your docker server to make the API available ( docker -H tcp://0.0.0.0:4243 -api-enable-cors -H unix:///var/run/docker.sock -d & )
+* Run the command on line 3 (js/services.js) on your docker server to make the API available ( docker -H tcp://0.0.0.0:4243 -api-enable-cors -H unix:///var/run/docker.sock -d & )
 * Edit the js/services.js file (line 5 & 6) with your docker's API address and the API version
 
 > Feel free to contact me for more info !
