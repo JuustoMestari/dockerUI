@@ -1,5 +1,7 @@
 # dockerUI
 
+### Has been tested with api v10 , not guaranteed working with other versions...
+
 ### Features
 With this version, you can :
 * Create containers using your images and specify the container start parameters
